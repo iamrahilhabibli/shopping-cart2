@@ -65,7 +65,7 @@ function createItemCheckoutMenu(item) {
           <span class="item-name">${item.name}</span>
           <button class="btn btn-outline-secondary btn-decrement" type="button">-</button>
         </div>
-        <input type="number" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" value="0">
+        <input type="number" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" value="1" data-id="${item.id}">
         <button class="btn btn-outline-secondary btn-increment" type="button">+</button>
         <button class="btn btn-danger" data-id=${item.id}>X</button>
         <span class="item-price">${item.price}</span>
@@ -103,12 +103,15 @@ function getItem(button) {
       break;
   }
 }
-
+function sumOfCounts() {
+  let sum = 0;
+  for (let i = 0; i < itemsCart.length; i++) {
+    sum += itemsCart[i].count;
+  }
+  return sum;
+}
 let addToCartBtn = document.querySelectorAll(".add-to-cart");
-// Events
-// addToCartBtn.addEventListener("click", () => {
-//   cartBtn.innerHTML++;
-// });
+//Events
 clearCartBtn.addEventListener("click", clearItemsCart);
 
 addToCartBtn.forEach((button) => {
@@ -117,7 +120,7 @@ addToCartBtn.forEach((button) => {
     if (item) {
       addItemToCart(item);
       createItemCheckoutMenu(item);
-      cartBtn.innerHTML = itemsCart.length;
+      cartBtn.innerHTML = sumOfCounts();
     }
   });
 });
