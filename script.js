@@ -1,6 +1,7 @@
 const modalBody = document.querySelector(".modal-body");
 const cartBtn = document.querySelector(".itemCountTotal");
 let clearCartBtn = document.querySelector(".clearcart");
+const totalPriceSpan = document.getElementById("total-price");
 let itemsCart = [];
 const orange = {
   id: "1",
@@ -76,6 +77,8 @@ function createItemCheckoutMenu(item) {
 function clearItemsCart() {
   itemsCart = [];
   cartBtn.innerHTML = `${itemsCart.length}`;
+  modalBody.innerHTML = "";
+  updateTotalPrice();
   localStorage.clear();
 }
 function countTotal() {
@@ -86,7 +89,6 @@ function countTotal() {
   return sum;
 }
 function updateTotalPrice() {
-  const totalPriceSpan = document.getElementById("total-price");
   let totalPrice = countTotal();
   totalPriceSpan.textContent = `Total Price: $${totalPrice}`;
 }
