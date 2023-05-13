@@ -54,6 +54,7 @@ function removeItemFromCart(item) {
   localStorage.setItem(item.name, JSON.stringify(item));
 }
 function emptySingleItemAll(item) {
+  // needs fixing
   for (let i = 0; i < itemsCart.length; i++) {
     if (itemsCart[i].name === item.name) {
       itemsCart.splice(itemsCart[i], 1);
@@ -106,6 +107,7 @@ function updateTotalPrice() {
   let totalPrice = countTotal();
   totalPriceSpan.textContent = `Total Price: $${totalPrice}`;
 }
+
 // Helper Functions
 function getItem(button) {
   const dataId = button.getAttribute("data-id");
@@ -155,7 +157,6 @@ addToCartBtn.forEach((button) => {
 });
 
 const removeBtns = modalBody.querySelectorAll(".btn-danger");
-
 removeBtns.forEach((button) => {
   button.addEventListener("click", () => {
     const itemId = button.getAttribute("data-id");
