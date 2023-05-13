@@ -74,6 +74,18 @@ function createItemCheckoutMenu(item) {
         <span class="item-price">${item.price}</span>
       </div>
     `;
+  const removeBtns = modalBody.querySelectorAll(".btn-danger");
+
+  removeBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+      const itemId = button.getAttribute("data-id");
+      const itemName = returnItemById(itemId);
+      emptySingleItemAll(itemName);
+      const itemDiv = button.closest(".input-group");
+      itemDiv.remove();
+      updateTotalPrice();
+    });
+  });
 }
 
 function clearItemsCart() {
