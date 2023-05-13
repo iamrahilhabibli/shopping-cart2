@@ -3,7 +3,7 @@ const cartBtn = document.querySelector(".itemCountTotal");
 let clearCartBtn = document.querySelector(".clearcart");
 const totalPriceSpan = document.getElementById("total-price");
 let addToCartBtn = document.querySelectorAll(".add-to-cart");
-const removeBtn = modalBody.querySelector(".btn-danger");
+
 let itemsCart = [];
 const orange = {
   id: "1",
@@ -63,7 +63,7 @@ function emptySingleItemAll(item) {
 }
 function createItemCheckoutMenu(item) {
   modalBody.innerHTML += `
-      <div class="input-group mb-3 d-flex flex-row justify-content-between">
+      <div id="${item.name}" class="input-group mb-3 d-flex flex-row justify-content-between">
         <div class="input-group-prepend">
           <span class="item-name">${item.name}</span>
           <button class="btn btn-outline-secondary btn-decrement" type="button">-</button>
@@ -142,13 +142,15 @@ addToCartBtn.forEach((button) => {
   });
 });
 
-removeBtn.addEventListener("click", () => {
-  const itemId = removeBtn.getAttribute("data-id");
-  const itemName = returnItemById(itemId);
-  emptySingleItemAll(itemName);
+const removeBtns = modalBody.querySelectorAll(".btn-danger");
 
-  const itemDiv = removeBtn.closest(".input-group");
-  itemDiv.remove();
-
-  updateTotalPrice();
+removeBtns.forEach((button) => {
+  button.addEventListener("click", () => {
+    const itemId = button.getAttribute("data-id");
+    const itemName = returnItemById(itemId);
+    emptySingleItemAll(itemName);
+    const itemDiv = button.closest(".input-group");
+    itemDiv.remove();
+    updateTotalPrice();
+  });
 });
