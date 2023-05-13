@@ -2,6 +2,8 @@ const modalBody = document.querySelector(".modal-body");
 const cartBtn = document.querySelector(".itemCountTotal");
 let clearCartBtn = document.querySelector(".clearcart");
 const totalPriceSpan = document.getElementById("total-price");
+let addToCartBtn = document.querySelectorAll(".add-to-cart");
+const removeBtn = modalBody.querySelector(".btn-danger");
 let itemsCart = [];
 const orange = {
   id: "1",
@@ -117,7 +119,14 @@ function sumOfCounts() {
   }
   return sum;
 }
-let addToCartBtn = document.querySelectorAll(".add-to-cart");
+function returnItemById(id) {
+  for (let i = 0; i < itemsCart.length; i++) {
+    if (id == itemsCart[i].id) {
+      return itemsCart[i].name;
+    }
+    return null;
+  }
+}
 //Events
 clearCartBtn.addEventListener("click", clearItemsCart);
 
@@ -131,4 +140,15 @@ addToCartBtn.forEach((button) => {
       cartBtn.innerHTML = sumOfCounts();
     }
   });
+});
+
+removeBtn.addEventListener("click", () => {
+  const itemId = removeBtn.getAttribute("data-id");
+  const itemName = returnItemById(itemId);
+  emptySingleItemAll(itemName);
+
+  const itemDiv = removeBtn.closest(".input-group");
+  itemDiv.remove();
+
+  updateTotalPrice();
 });
