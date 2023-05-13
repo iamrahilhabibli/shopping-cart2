@@ -85,6 +85,11 @@ function countTotal() {
   }
   return sum;
 }
+function updateTotalPrice() {
+  const totalPriceSpan = document.getElementById("total-price");
+  let totalPrice = countTotal();
+  totalPriceSpan.textContent = `Total Price: $${totalPrice}`;
+}
 // Helper Functions
 function getItem(button) {
   const dataId = button.getAttribute("data-id");
@@ -120,6 +125,7 @@ addToCartBtn.forEach((button) => {
     if (item) {
       addItemToCart(item);
       createItemCheckoutMenu(item);
+      updateTotalPrice();
       cartBtn.innerHTML = sumOfCounts();
     }
   });
