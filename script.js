@@ -6,24 +6,24 @@ let addToCartBtn = document.querySelectorAll(".add-to-cart");
 
 let itemsCart = [];
 const orange = {
-  id: "1",
+  id: 1,
   name: "Orange",
-  price: "0.5",
-  count: "0",
+  price: 0.5,
+  count: 0,
 };
 
 const banana = {
-  id: "2",
+  id: 2,
   name: "Banana",
-  price: "1.22",
-  count: "0",
+  price: 1.22,
+  count: 0,
 };
 
 const lemon = {
-  id: "3",
+  id: 3,
   name: "Lemon",
-  price: "5",
-  count: "0",
+  price: 5,
+  count: 0,
 };
 function addItemToCart(item) {
   let itemExists = false;
@@ -63,7 +63,7 @@ function emptySingleItemAll(item) {
 }
 function createItemCheckoutMenu(item) {
   modalBody.innerHTML += `
-      <div id="${item.name}" class="input-group mb-3 d-flex flex-row justify-content-between">
+      <div class="input-group mb-3 d-flex flex-row justify-content-between">
         <div class="input-group-prepend">
           <span class="item-name">${item.name}</span>
           <button class="btn btn-outline-secondary btn-decrement" type="button">-</button>
